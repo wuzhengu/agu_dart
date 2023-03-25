@@ -70,9 +70,20 @@ class JsonEntry<Value> implements MapEntry<String, Value?> {
     return null;
   }
 
-  List? asList() {
+  List<Item>? asList<Item>([Item Function(dynamic)? newItem]) {
     var value = this.value;
-    if (value is List) return value;
+    if (value is List) {
+      if (newItem != null) {
+        return value.map((e) {
+          var item = newItem(e);
+          if (e is Map && item is JsonObj) {
+            item.fromMap(e);
+          }
+          return item;
+        }).toList();
+      }
+      return value as dynamic;
+    }
     return null;
   }
 }
