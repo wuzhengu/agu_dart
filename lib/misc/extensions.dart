@@ -16,3 +16,12 @@ extension NumExtension on num {
     for (var i = res.toInt();;) return i == res ? i : res;
   }
 }
+
+extension ListExtension<E> on List<E> {
+  E? find(bool test(E e), [bool last = false]) {
+    for (var e in (last ? this.reversed : this)) {
+      if (test(e)) return e;
+    }
+    return null;
+  }
+}
