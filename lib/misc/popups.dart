@@ -121,7 +121,9 @@ Popup showPopup(
     // barrierColor: Colors.transparent,
     builder: (context) {
       if (completer.isCompleted != true) completer.complete(context);
-      return Center(
+      return Container(
+        alignment: Alignment.center,
+        margin: MediaQuery.of(context).viewInsets,
         child: WillPopScope(
           onWillPop: () async => cancelable,
           child: Material(
