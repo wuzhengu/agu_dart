@@ -25,3 +25,12 @@ extension ListExtension<E> on List<E> {
     return null;
   }
 }
+
+extension MapExtension<K, V> on Map<K, V?> {
+  V? pull(K key) {
+    var contains = this.containsKey(key);
+    var value = this.remove(key);
+    if (contains) this[key] = value;
+    return value;
+  }
+}
