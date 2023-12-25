@@ -17,9 +17,11 @@ extension NumExtension on num {
   }
 }
 
-extension ListExtension<E> on List<E> {
-  E? find(bool test(E e), [bool last = false]) {
-    for (var e in (last ? this.reversed : this)) {
+extension ListExtension<E> on Iterable<E> {
+  E? find(bool Function(E e) test, [bool last = false]) {
+    var list = this;
+    if (last) list = (list is List<E> ? list : list.toList()).reversed;
+    for (var e in list) {
       if (test(e)) return e;
     }
     return null;
