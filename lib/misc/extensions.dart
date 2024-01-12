@@ -36,3 +36,25 @@ extension MapExtension<K, V> on Map<K, V?> {
     return value;
   }
 }
+
+extension StringExtension on String {
+  /// 分割字符串，返回结果包含分隔符
+  ///
+  /// JS RegExp不支持反向预搜索
+  List<String> splitWith(Pattern pattern) {
+    final input = this;
+    List<String> res = [];
+    var start = 0;
+    for (var match in pattern.allMatches(input)) {
+      if (start < match.start) {
+        res.add(input.substring(start, match.start));
+      }
+      res.add(input.substring(match.start, match.end));
+      start = match.end;
+    }
+    if (start < input.length) {
+      res.add(input.substring(start));
+    }
+    return res;
+  }
+}

@@ -6,7 +6,7 @@ homepage: https://github.com/wuzhengu
 
 # publish_to: 'none'
 
-version: 1.0.6
+version: 1.0.7
 
 environment:
   sdk: '>=2.19.3 <3.0.0'
