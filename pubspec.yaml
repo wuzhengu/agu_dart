@@ -1,10 +1,8 @@
 name: agu_dart
 
-description: description in pubspec.yaml
+description: ""
 
-homepage: https://github.com/wuzhengu
-
-# publish_to: 'none'
+repository: "https://github.com/wuzhengu/agu_dart"
 
 version: 1.0.7
 
