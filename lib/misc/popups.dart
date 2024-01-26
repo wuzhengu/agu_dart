@@ -41,6 +41,7 @@ class Popup {
 Popup showPopup(
   BuildContext context, {
   bool cancelable = false,
+  bool transparent = false,
   dynamic loading,
   dynamic message,
   Map<String, Function?> actions = const {},
@@ -118,7 +119,7 @@ Popup showPopup(
   popup.result = showDialog(
     context: context,
     barrierDismissible: cancelable,
-    // barrierColor: Colors.transparent,
+    barrierColor: transparent ? Colors.transparent : null,
     builder: (context) {
       if (completer.isCompleted != true) completer.complete(context);
       return Container(
@@ -140,12 +141,14 @@ Popup showPopup(
 Popup showAlert(
   BuildContext context, {
   bool? cancelable,
+  bool transparent = false,
   required dynamic message,
   Map<String, Function?> actions = const {"知道了": null},
 }) {
   return showPopup(
     context,
     cancelable: cancelable ?? actions.isEmpty,
+    transparent: transparent,
     message: message,
     actions: actions,
   );
@@ -155,11 +158,13 @@ Popup showLoading(
   BuildContext context, {
   dynamic message,
   bool cancelable = false,
+  bool transparent = false,
 }) {
   return showPopup(
     context,
     loading: true,
     cancelable: cancelable,
+    transparent: transparent,
     message: message,
   );
 }
